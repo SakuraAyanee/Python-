@@ -1,0 +1,31 @@
+# 倒计时实例 题目：请用turtle库和time库实现倒计时
+
+def time_def(number, active):  # 定义一个判定输入时间是否为纯数字的函数time_def 利用while循环进行判断
+    while active == True:
+        time_active = number.isdigit()
+        if time_active == True:
+            number = eval(number)
+            active = False  # 当number输入为纯数字时，令active为False 并跳出循环
+            return number  # 返回number的值作为函数的结果
+        else:
+            print("输入不为纯数字，请重新输入:")
+            number = input()
+
+
+from time import *
+from turtle import *
+hour = time_def(input("请输入小时："), True)  # number的值自行输入，经过函数处理后返回的是number且为纯数字的值
+minute = time_def(input("请输入分钟："), True)
+second = time_def(input("请输入秒钟："), True)
+print("您输入的数为%s小时,%d分,%s秒" % (hour, minute, second))  # 利用分别键入hour,minute,second的值
+
+seconds = hour * 3600 + minute * 60 + second  # 计算总秒数
+setup(1000,1000,50,50)
+pencolor("LightSalmon3")
+for seconds in range(seconds,0,-1):  # 设定seconds的从末减到0循环，步宽为-1
+    write(seconds,font=("微软雅黑",52,"bold"))
+    sleep(1)
+    undo()
+
+write("时间到！",font=("微软雅黑",52,"bold"))
+exitonclick()
