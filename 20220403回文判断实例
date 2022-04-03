@@ -1,0 +1,29 @@
+# 回文实例  ASCII码转换部分灵感来自 https://www.zhihu.com/question/512383583
+# 题目：请用代码实现回文的判断，如123321是回文，123456不是回文
+
+message = input("请输入任何字符：")  # 请求输入
+lenth = len(message)  # 取字符串的长度 用于区分单数和双数形式取前后文
+half = lenth // 2  # 整除2取 前后半文字
+# print(lenth % 2)  # 用于调试 确认字符串长度为单数还是双数
+if lenth % 2 == 0:  # 当字符串长度为双数时 取0前半和后半时不用跳过中间值
+    front_message = message[:half]
+    end_message = message[half:]
+else:  # 当字符串长度为单数时 取0前半和后半时跳过中间值
+    front_message = message[:half]
+    end_message = message[half + 1:]
+print("前文为：", front_message, "\n后文为：", end_message)
+
+ascii_values1 = []  # 创建一个空数组 用于存放前文的ASCII码
+for character in front_message:  # character作为临时组 用于存放在前文中依次转换的ASCII码
+    ascii_values1.append(ord(character))  # 依次读取front_massage中的字符串并转换，存放到ascii_values1这个数组中
+print(ascii_values1)  # 展示转换后的数组
+
+end_message = end_message[::-1]  # 为便于判断回文 先将后文倒置，以便于比较。倒置的方法是取全组，步宽为-1取切片
+ascii_values2 = []  # 创建一个空数组 用于存放后文的ASCII码
+for character in end_message:  # 方法同上 取后文的ASCII码数组
+    ascii_values2.append(ord(character))
+print(ascii_values2)
+if ascii_values1 == ascii_values2:  # 通过比较ASCII码数组，从而可以判断汉字 数字 字母 甚至标点符号的回文
+    print("很有精神！是回文！")
+else:
+    print("不是回文哦...")
