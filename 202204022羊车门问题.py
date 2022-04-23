@@ -25,6 +25,9 @@ for i in range(time):
     #             active = False
     #         else:
     #             print("请输入1-3的任意数")
+#
+#
+# 模拟进行开门后随机在两扇门中选择的情况
     sheep_door = []
     for sheep in range(1,4):
         sheep_door.append(sheep)
@@ -42,6 +45,7 @@ for i in range(time):
     else:
          print("没猜中捏")
 
+# 直接选择的情况
 for i in range(time):
     car_number = randint(1, 3)
     try_number = randint(1, 3)
@@ -53,7 +57,9 @@ for i in range(time):
 
 chance1 = times1 / time
 chance2 = times2 / time
+chance3 = 1 - chance2
 print("\n已各执行{}次".format(time))
-print("开门重选中奖概率为：{:.2%}".format(chance1))
+print("开门随机重选中奖概率为：{:.2%}".format(chance1))
 print("直接选择中奖概率为：{:.2%}".format(chance2))
+print("开门后重选中奖概率为：{:.2%}".format(chance3))
 
